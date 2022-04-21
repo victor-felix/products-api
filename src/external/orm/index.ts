@@ -11,6 +11,12 @@ const connectionOptions: ConnectionOptions = {
   synchronize: config.DB.synchronize,
   migrationsRun: config.DB.migrationsRun,
   logging: config.DB.logging,
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  },
   entities: [`${__dirname}/schemas/public/*{.ts,.js}`],
   migrations: [`${__dirname}/migrations/*{.ts,.js}`],
 };

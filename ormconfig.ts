@@ -18,6 +18,12 @@ export default {
   logging: process.env.DATABASE_LOGGING === 'true',
   entities: ['src/external/orm/schemas/public/*.ts'],
   migrations: ['src/external/orm/migrations/*.ts'],
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  },
   cli: {
     entitiesDir: 'src/external/orm/schemas',
     migrationsDir: 'src/external/orm/migrations',
