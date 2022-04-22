@@ -118,7 +118,7 @@ DATABASE_LOGGING=false
 ### Deletar produto
 
 ```http
-  PUT /api/v1/product/:id
+  DELETE /api/v1/product/:id
 ```
 
 #### Parametros de rota
