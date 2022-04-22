@@ -7,7 +7,7 @@ import InvalidDataError from '@usecases/errors/invalid-data-error';
 import GetTagByQueryController from './get-tag-by-query-controller';
 import GetTagByQueryRequest from '@usecases/tag/v1/domain/get-tag-by-query-request';
 import { GetTagByQueryResponse } from '@usecases/tag/v1/domain/get-tag-by-query-response';
-import Tag from '@entities/tag';
+import TagPaginationResponse from '@usecases/tag/v1/domain/tag-pagination-response';
 
 const useCaseMock: MockProxy<
   UseCase<
@@ -73,12 +73,18 @@ describe('V1 Get Tag By Query Controller', () => {
         id: 'id',
       },
     };
-    const tags: Tag[] = [
-      {
-        id: faker.datatype.number(),
-        name: faker.datatype.string(),
-      }
-    ];
+    const tags: TagPaginationResponse = {
+      data: [
+        {
+          id: faker.datatype.number(),
+          name: faker.datatype.string(),
+        }
+      ],
+      page_total: faker.datatype.number(),
+      total: faker.datatype.number(),
+      next: faker.datatype.number(),
+      previous: faker.datatype.number(),
+    };
     const response: GetTagByQueryResponse = {
       isLeft: jest.fn().mockReturnValue(false),
       isRight: jest.fn().mockReturnValue(true),

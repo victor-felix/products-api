@@ -8,6 +8,7 @@ import InvalidDataError from '@usecases/errors/invalid-data-error';
 import GetTagByQueryUseCase from './get-tag-by-query-use-case';
 import GetTagByQueryRequest from './domain/get-tag-by-query-request';
 import GetTagByQueryError from '@usecases/errors/get-tag-by-query-error';
+import TagPaginationResponse from './domain/tag-pagination-response';
 
 const tagRepositoryMock: MockProxy<TagRepository> & TagRepository = mock<TagRepository>();
 
@@ -81,14 +82,21 @@ describe('V1 Get Tag By Query Use Case', () => {
       id: request.id,
       name: faker.datatype.string(),
     };
+    const dataTags = {
+      data: [tag],
+      page_total: faker.datatype.number(),
+      total: faker.datatype.number(),
+      next: faker.datatype.number(),
+      previous: faker.datatype.number(),
+    } as TagPaginationResponse;
 
     requestValidatorMock.validate.mockReturnValue(resultValidator);
-    tagRepositoryMock.query.mockResolvedValue([tag]);
+    tagRepositoryMock.query.mockResolvedValue(dataTags);
 
     const response = await useCase.execute(request);
 
     expect(response.isLeft()).toBe(false);
     expect(response.isRight()).toBe(true);
-    expect(response.value).toEqual([tag]);
+    expect(response.value).toEqual(dataTags);
   });
 });

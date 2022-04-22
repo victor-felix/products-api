@@ -62,10 +62,8 @@ describe('Test controller', () => {
 
     expect(response).toEqual({
       statusCode: 200,
-      body: {
-        id: 'id',
-        ...httpRequest.body,
-      },
+      id: 'id',
+      ...httpRequest.body,
     });
   });
 

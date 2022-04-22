@@ -186,7 +186,7 @@ DATABASE_LOGGING=false
 ### Deletar categoria
 
 ```http
-  PUT /api/v1/tag/:id
+  DELETE /api/v1/tag/:id
 ```
 
 #### Parametros de rota
@@ -210,7 +210,7 @@ DATABASE_LOGGING=false
 ### Importar arquivo JSON contendo os produtos de uma categoria
 
 ```http
-  GET /api/v1/tag/:id/products
+  POST /api/v1/tag/:id/products
 ```
 
 #### Parametros de rota
